@@ -1,9 +1,7 @@
 package com.drools.fee_calc.config;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import org.drools.core.util.Drools;
 import org.eclipse.paho.mqttv5.client.IMqttToken;
 import org.eclipse.paho.mqttv5.client.MqttCallback;
 import org.eclipse.paho.mqttv5.client.MqttClient;
