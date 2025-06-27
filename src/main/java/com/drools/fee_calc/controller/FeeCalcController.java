@@ -1,7 +1,10 @@
 package com.drools.fee_calc.controller;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,9 @@ import com.drools.fee_calc.model.Transaction;
 @CrossOrigin(origins = "*")
 public class FeeCalcController {
 
+    @Value("${drools.fee-cal.variables.globals.flag-name}")
+    private String globalFlagName;
+
     @Autowired
     private DroolsEngineService droolsEngineService;
 
@@ -36,6 +42,7 @@ public class FeeCalcController {
         customer.setType(TypeCustomer.CORPORATE.toString());
 
         KieSession kieSession = droolsEngineService.getKieContainer().newKieSession();
+        kieSession.setGlobal(globalFlagName, new AtomicBoolean(false));
         kieSession.insert(transaction);
         kieSession.insert(customer);
         kieSession.fireAllRules();

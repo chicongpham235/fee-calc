@@ -1,10 +1,10 @@
 package com.drools.fee_calc.config;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.UUID;
 
 import org.kie.api.KieServices;
 import org.kie.api.builder.*;
@@ -43,6 +43,8 @@ public class DroolsEngineService {
         try {
             String originalDrl = Files.readString(Path.of(drlPath), StandardCharsets.UTF_8);
 
+            String pkg = "package rules.fee_" + UUID.randomUUID().toString().replace("-", "_") + ";\n";
+
             String imports = String.join("\n", List.of(
                     "import " + Transaction.class.getName() + ";",
                     "import " + Customer.class.getName() + ";"));
@@ -52,8 +54,10 @@ public class DroolsEngineService {
                 int idx = originalDrl.indexOf("\n"); // sau dòng package
                 modifiedDrl = originalDrl.substring(0, idx + 1) + imports + "\n" + originalDrl.substring(idx + 1);
             } else {
-                modifiedDrl = imports + "\n" + originalDrl;
+                modifiedDrl = pkg + "\n" + imports + "\n" + originalDrl;
             }
+
+            logger.info("📄 DRL content:\n{}", modifiedDrl);
 
             kieFileSystem.write("src/main/resources/rules/generated.drl",
                     ResourceFactory.newByteArrayResource(modifiedDrl.getBytes(StandardCharsets.UTF_8)));
