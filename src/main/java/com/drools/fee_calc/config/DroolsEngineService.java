@@ -13,23 +13,20 @@ import org.kie.internal.io.ResourceFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.drools.fee_calc.base.BaseClass;
 import com.drools.fee_calc.model.Customer;
 import com.drools.fee_calc.model.Transaction;
 
 import jakarta.annotation.PostConstruct;
 
 @Service
-public class DroolsEngineService extends BaseClass {
+public class DroolsEngineService {
+
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(DroolsEngineService.class);
 
     @Value("${drools.fee-cal.drl-path}")
     private String drlPath;
 
     private final KieServices kieServices = KieServices.Factory.get();
-
-    DroolsEngineService() {
-        super.getInstance(DroolsEngineService.class);
-    }
 
     private volatile KieContainer kieContainer;
 

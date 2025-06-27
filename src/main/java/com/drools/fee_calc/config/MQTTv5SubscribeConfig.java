@@ -18,14 +18,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import com.drools.fee_calc.base.BaseClass;
 import com.drools.fee_calc.subscriber.DroolRuleSocketDetail;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.annotation.PreDestroy;
 
 @Configuration
-public class MQTTv5SubscribeConfig extends BaseClass {
+public class MQTTv5SubscribeConfig {
+
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(MQTTv5SubscribeConfig.class);
 
     private MqttClient client;
 
@@ -36,10 +37,6 @@ public class MQTTv5SubscribeConfig extends BaseClass {
 
     @Autowired
     DroolsEngineService droolsEngineService;
-
-    public MQTTv5SubscribeConfig() {
-        super.getInstance(MQTTv5SubscribeConfig.class);
-    }
 
     @Primary
     @Bean(name = "mqttClient")
