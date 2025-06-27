@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drools.fee_calc.base.BaseClass;
-import com.drools.fee_calc.component.DroolsEngineService;
+import com.drools.fee_calc.config.DroolsEngineService;
 import com.drools.fee_calc.enums.ChannelTransaction;
 import com.drools.fee_calc.enums.TierCustomer;
 import com.drools.fee_calc.enums.TypeCustomer;

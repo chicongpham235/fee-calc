@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import com.drools.fee_calc.base.BaseClass;
-import com.drools.fee_calc.component.DroolsEngineService;
 import com.drools.fee_calc.subscriber.DroolRuleSocketDetail;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
