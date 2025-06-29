@@ -51,7 +51,7 @@ public class MQTTv5SubscribeConfig {
             client.connect(options);
             logger.info("clientInstance: client = " + client.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error while creating MQTT client: " + e.getMessage());
         }
         return client;
     }

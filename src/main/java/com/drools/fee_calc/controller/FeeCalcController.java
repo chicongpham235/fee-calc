@@ -30,7 +30,7 @@ public class FeeCalcController {
     private DroolsEngineService droolsEngineService;
 
     @PostMapping("/fee-calc")
-    public Object testDrool() {
+    public Double calculateFee() {
         Transaction transaction = new Transaction();
         transaction.setAmount(100000000.00);
         transaction.setChannel(ChannelTransaction.ONLINE.toString());
@@ -39,7 +39,7 @@ public class FeeCalcController {
         Customer customer = new Customer();
         customer.setName("PCC");
         customer.setTier(TierCustomer.DIAMOND.toString());
-        customer.setType(TypeCustomer.CORPORATE.toString());
+        customer.setType(TypeCustomer.PRIVATE.toString());
 
         KieSession kieSession = droolsEngineService.getKieContainer().newKieSession();
         kieSession.setGlobal(globalFlagName, new AtomicBoolean(false));

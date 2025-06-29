@@ -43,7 +43,9 @@ public class DroolsEngineService {
         try {
             String originalDrl = Files.readString(Path.of(drlPath), StandardCharsets.UTF_8);
 
-            String pkg = "package rules.fee_" + UUID.randomUUID().toString().replace("-", "_") + ";\n";
+            String pkgName = "rule_" + UUID.randomUUID().toString().replace("-", "_");
+
+            String pkg = "package " + pkgName + ";\n";
 
             String imports = String.join("\n", List.of(
                     "import " + Transaction.class.getName() + ";",
@@ -59,7 +61,7 @@ public class DroolsEngineService {
 
             logger.info("📄 DRL content:\n{}", modifiedDrl);
 
-            kieFileSystem.write("src/main/resources/rules/generated.drl",
+            kieFileSystem.write("src/main/resources/" + pkgName + "/generated.drl",
                     ResourceFactory.newByteArrayResource(modifiedDrl.getBytes(StandardCharsets.UTF_8)));
 
             // Resource resource = ResourceFactory.newFileResource(drlPath);
