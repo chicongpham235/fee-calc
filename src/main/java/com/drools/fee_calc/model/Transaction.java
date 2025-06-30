@@ -9,5 +9,5 @@ public class Transaction {
     private Double amount;
     private String type;
     private String channel;
-    private Double fee;
+    private Double fee = 0.0;
 }
