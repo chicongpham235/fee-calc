@@ -13,7 +13,7 @@ import com.drools.fee_calc.enums.TypeTransaction;
 import com.drools.fee_calc.service.FeeCalcService;
 
 @RestController
-@RequestMapping("/fee-service")
+@RequestMapping("/fee")
 @CrossOrigin(origins = "*")
 public class FeeCalcController {
 
