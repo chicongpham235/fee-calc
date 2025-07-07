@@ -21,19 +21,7 @@ public class FeeCalcServiceImpl implements FeeCalcService {
     }
 
     @Override
-    public Double calculateFee(Double amount, String type, String channel, String customerName, String customerTier,
-            String customerType) {
-        // Create a transaction and customer object
-        Transaction transaction = new Transaction();
-        transaction.setAmount(amount);
-        transaction.setType(type);
-        transaction.setChannel(channel);
-
-        Customer customer = new Customer();
-        customer.setName(customerName);
-        customer.setTier(customerTier);
-        customer.setType(customerType);
-
+    public Double calculateFee(Transaction transaction, Customer customer) {
         // Create a KieSession and insert the objects
         KieSession kieSession = getKieContainer().newKieSession();
         kieSession.insert(transaction);

@@ -1,6 +1,8 @@
 package com.drools.fee_calc.service;
 
+import com.drools.fee_calc.model.Customer;
+import com.drools.fee_calc.model.Transaction;
+
 public interface FeeCalcService {
-    Double calculateFee(Double amount, String type, String channel, String customerName, String customerTier,
-            String customerType);
+    Double calculateFee(Transaction transaction, Customer customer);
 }
