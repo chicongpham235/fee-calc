@@ -1,11 +1,13 @@
 server:
-  port: 8081
+  port: 7002
   servlet:
     contextPath: /api
 
 spring:
   application:
-    name: map-properties-service
+    name: fee-service
+  cache:
+    type: simple
   main:
     allow-bean-definition-overriding: true
   profiles:
